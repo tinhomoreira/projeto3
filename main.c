@@ -35,6 +35,15 @@ int main() {
             case 5:
                 filtrarPorPrioridade(tasks, numTasks);
                 break;
+            case 6:
+                filtrarPorEstado(tasks, numTasks);
+                break;
+            case 7:
+                filtrarPorCategoria(tasks, numTasks);
+                break;
+            case 8:
+                filtrarPorPrioridadeECategoria(tasks, numTasks);
+                break;
             case 0:
                 printf("Encerrando o programa.\n");
                 break;
