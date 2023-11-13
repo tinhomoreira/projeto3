@@ -20,3 +20,5 @@ void exportarPorCategoria(struct Task tasks[], int numTasks);
 void exportarPorPrioridadeECategoria(struct Task tasks[], int numTasks);
 
 #endif
+
+// Apenas colocando as funções usadas
