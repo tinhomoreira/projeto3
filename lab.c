@@ -119,4 +119,71 @@ void filtrarPorPrioridade(struct Task tasks[], int numTasks) {
         }
     }
 }
+void filtrarPorEstado(struct Task tasks[], int numTasks) {
+    char estado[50];
+    printf("Digite o estado desejado: ");
+    getchar();
+    fgets(estado, sizeof(estado), stdin);
+    estado[strlen(estado) - 1] = '\0';  
+
+    printf("Tarefas com estado %s:\n", estado);
+    for (int i = 0; i < numTasks; i++) {
+        if (strcmp(tasks[i].estado_tarefa, estado) == 0) {
+            printf("Prioridade: %d\n", tasks[i].priority);
+            printf("Descrição: %s", tasks[i].description);
+            printf("Categoria: %s", tasks[i].category);
+            printf("--------------------\n");
+        }
+    }
+}
+
+void filtrarPorCategoria(struct Task tasks[], int numTasks) {
+    char categoria[100];
+    printf("Digite a categoria desejada: ");
+    getchar();
+    fgets(categoria, sizeof(categoria), stdin);
+    categoria[strlen(categoria) - 1] = '\0';  
+
+    printf("Tarefas com categoria %s, ordenadas por prioridade:\n", categoria);
+
+    for (int i = 0; i < numTasks - 1; i++) {
+        for (int j = i + 1; j < numTasks; j++) {
+            if (tasks[i].priority < tasks[j].priority) {
+                struct Task temp = tasks[i];
+                tasks[i] = tasks[j];
+                tasks[j] = temp;
+            }
+        }
+    }
+
+    for (int i = 0; i < numTasks; i++) {
+        if (strcmp(tasks[i].category, categoria) == 0) {
+            printf("Prioridade: %d\n", tasks[i].priority);
+            printf("Descrição: %s", tasks[i].description);
+            printf("Estado: %s\n", tasks[i].estado_tarefa);
+            printf("--------------------\n");
+        }
+    }
+}
+
+void filtrarPorPrioridadeECategoria(struct Task tasks[], int numTasks) {
+    int prioridade;
+    char categoria[100];
+
+    printf("Digite a prioridade desejada: ");
+    scanf("%d", &prioridade);
+
+    printf("Digite a categoria desejada: ");
+    getchar();
+    fgets(categoria, sizeof(categoria), stdin);
+    categoria[strlen(categoria) - 1] = '\0';  
+
+    printf("Tarefas com prioridade %d e categoria %s:\n", prioridade, categoria);
+    for (int i = 0; i < numTasks; i++) {
+        if (tasks[i].priority == prioridade && strcmp(tasks[i].category, categoria) == 0) {
+            printf("Descrição: %s", tasks[i].description);
+            printf("Estado: %s\n", tasks[i].estado_tarefa);
+            printf("--------------------\n");
+        }
+    }
 }
