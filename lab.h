@@ -10,5 +10,6 @@ struct Task {
 void cadastrarTarefa(struct Task tasks[], int *numTasks);
 void listarTarefas(struct Task tasks[], int numTasks);
 void deletarTarefa(struct Task tasks[], int *numTasks, int index);
+void alterarTarefa(struct Task tasks[], int numTasks);
 
 #endif
