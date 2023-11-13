@@ -103,4 +103,20 @@ void alterarTarefa(struct Task tasks[], int numTasks) {
         default:
             printf("Opção inválida.\n");
     }
+
+void filtrarPorPrioridade(struct Task tasks[], int numTasks) {
+    int prioridade;
+    printf("Digite a prioridade desejada: ");
+    scanf("%d", &prioridade);
+
+    printf("Tarefas com prioridade %d:\n", prioridade);
+    for (int i = 0; i < numTasks; i++) {
+        if (tasks[i].priority == prioridade) {
+            printf("Descrição: %s", tasks[i].description);
+            printf("Categoria: %s", tasks[i].category);
+            printf("Estado: %s\n", tasks[i].estado_tarefa);
+            printf("--------------------\n");
+        }
+    }
+}
 }
