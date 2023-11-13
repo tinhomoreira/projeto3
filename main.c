@@ -32,6 +32,9 @@ int main() {
             case 4:
                 alterarTarefa(tasks, numTasks);
                 break;
+            case 5:
+                filtrarPorPrioridade(tasks, numTasks);
+                break;
             case 0:
                 printf("Encerrando o programa.\n");
                 break;
