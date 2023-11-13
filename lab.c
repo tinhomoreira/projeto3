@@ -187,3 +187,77 @@ void filtrarPorPrioridadeECategoria(struct Task tasks[], int numTasks) {
         }
     }
 }
+void exportarPorPrioridade(struct Task tasks[], int numTasks) {
+    int prioridade;
+    printf("Digite a prioridade desejada para exportação: ");
+    scanf("%d", &prioridade);
+
+    FILE *arquivo = fopen("export_por_prioridade.txt", "w");
+    if (arquivo == NULL) {
+        printf("Erro ao criar o arquivo de exportação.\n");
+        return;
+    }
+
+    for (int i = 0; i < numTasks; i++) {
+        if (tasks[i].priority == prioridade) {
+            fprintf(arquivo, "%d, %s, %s, %s", tasks[i].priority, tasks[i].category, tasks[i].estado_tarefa, tasks[i].description);
+            fprintf(arquivo, "\n");
+        }
+    }
+
+    fclose(arquivo);
+    printf("Tarefas exportadas por prioridade com sucesso!\n");
+}
+
+void exportarPorCategoria(struct Task tasks[], int numTasks) {
+    char categoria[100];
+    printf("Digite a categoria desejada para exportação: ");
+    getchar();
+    fgets(categoria, sizeof(categoria), stdin);
+    categoria[strlen(categoria) - 1] = '\0'; 
+
+    FILE *arquivo = fopen("export_por_categoria.txt", "w");
+    if (arquivo == NULL) {
+        printf("Erro ao criar o arquivo de exportação.\n");
+        return;
+    }
+
+    for (int i = 0; i < numTasks; i++) {
+        if (strcmp(tasks[i].category, categoria) == 0) {
+            fprintf(arquivo, "%d, %s, %s, %s", tasks[i].priority, tasks[i].category, tasks[i].estado_tarefa, tasks[i].description);
+            fprintf(arquivo, "\n");
+        }
+    }
+
+    fclose(arquivo);
+    printf("Tarefas exportadas por categoria com sucesso!\n");
+}
+
+void exportarPorPrioridadeECategoria(struct Task tasks[], int numTasks) {
+    int prioridade;
+    char categoria[100];
+
+    printf("Digite a prioridade desejada: ");
+    scanf("%d", &prioridade);
+
+    printf("Digite a categoria desejada: ");
+    getchar();
+    fgets(categoria, sizeof(categoria), stdin);
+    categoria[strlen(categoria) - 1] = '\0'; 
+
+    FILE *arquivo = fopen("export_por_prioridade_e_categoria.txt", "w");
+    if (arquivo == NULL) {
+        printf("Erro ao criar o arquivo de exportação.\n");
+        return;
+    }
+
+    for (int i = 0; i < numTasks; i++) {
+        if (tasks[i].priority == prioridade && strcmp(tasks[i].category, categoria) == 0) {
+            fprintf(arquivo, "%d, %s, %s, %s", tasks[i].priority, tasks[i].category, tasks[i].estado_tarefa, tasks[i].description);
+            fprintf(arquivo, "\n");
+        }
+    }
+
+    fclose(arquivo);
+    printf("Tarefas exportadas por prioridade e categoria com sucesso!\n");
+}
