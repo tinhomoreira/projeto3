@@ -29,6 +29,9 @@ int main() {
                 deletarTarefa(tasks, &numTasks, index - 1);
                 break;
             }
+            case 4:
+                alterarTarefa(tasks, numTasks);
+                break;
             case 0:
                 printf("Encerrando o programa.\n");
                 break;
