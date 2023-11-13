@@ -53,3 +53,54 @@ void deletarTarefa(struct Task tasks[], int *numTasks, int index) {
     (*numTasks)--;
     printf("Tarefa deletada com sucesso! :)\n");
 }
+
+void alterarTarefa(struct Task tasks[], int numTasks) {
+    if (numTasks == 0) {
+        printf("Não há tarefas cadastradas.\n");
+        return;
+    }
+
+    int index;
+    printf("Digite o índice da tarefa a ser alterada: ");
+    scanf("%d", &index);
+
+    if (index < 1 || index > numTasks) {
+        printf("Índice inválido.\n");
+        return;
+    }
+
+    struct Task *task = &tasks[index - 1];
+
+    int opcao;
+    printf("Escolha o campo a ser alterado:\n");
+    printf("1. Prioridade\n");
+    printf("2. Descrição\n");
+    printf("3. Categoria\n");
+    printf("4. Estado\n");
+    printf("Escolha uma opção: ");
+    scanf("%d", &opcao);
+
+    switch (opcao) {
+        case 1:
+            printf("Digite a nova prioridade: ");
+            scanf("%d", &task->priority);
+            break;
+        case 2:
+            printf("Digite a nova descrição: ");
+            getchar();  // Limpar o buffer do teclado
+            fgets(task->description, sizeof(task->description), stdin);
+            break;
+        case 3:
+            printf("Digite a nova categoria: ");
+            getchar();  // Limpar o buffer do teclado
+            fgets(task->category, sizeof(task->category), stdin);
+            break;
+        case 4:
+            printf("Digite o novo estado: ");
+            getchar();  // Limpar o buffer do teclado
+            fgets(task->estado_tarefa, sizeof(task->estado_tarefa), stdin);
+            break;
+        default:
+            printf("Opção inválida.\n");
+    }
+}
